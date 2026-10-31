@@ -73,7 +73,7 @@ ART.sIdeas = function () {
     T(48, 222, 'IDEAS', 180, C.ink, { rot: -4, fit: 640 }) + T(48, 345, 'THAT MOVE', 118, C.ink, { rot: -4 }) +
     T(54, 500, 'PEOPLE.', 168, C.ink, { rot: -4, fit: 690 }) + squig(52, 548, 400, C.pink, 9) +
     star(700, 110, 72, C.pink, 12) + smile(110, 900, 54, C.blue, C.paper) +
-    T(750, 960, '@trioandco', 26, C.ink, { a: 'end', f: FK, w: 700, ls: 1 }));
+    T(750, 960, '@trioandco.eg', 26, C.ink, { a: 'end', f: FK, w: 700, ls: 1 }));
 };
 ART.sDrop = function () {
   return svgWrap(800, 1000,
@@ -129,7 +129,7 @@ function reelUI(w, h, handle) {
   var bars = [0, 1, 2, 3, 4].map(function (i) {
     return R(34 + i * ((w - 68) / 5), 40, (w - 68) / 5 - 8, 6, i < 2 ? C.paper : 'rgba(245,245,240,.35)', 'rx="3"');
   }).join('');
-  return bars + rail + O(60, h - 150, 24, C.acid) + T(100, h - 142, handle || '@trioandco', 26, C.paper, { f: FK, w: 700, ls: 1 }) +
+  return bars + rail + O(60, h - 150, 24, C.acid) + T(100, h - 142, handle || '@trioandco.eg', 26, C.paper, { f: FK, w: 700, ls: 1 }) +
     R(34, h - 100, w * 0.55, 12, 'rgba(245,245,240,.7)', 'rx="6"') + R(34, h - 74, w * 0.38, 12, 'rgba(245,245,240,.45)', 'rx="6"');
 }
 ART.rLaunch = function () {
@@ -225,9 +225,10 @@ ART.case3 = function () { return caseArt('03', C.purple, C.paper, 'curls', C.pin
 
 /* ===================== EDIT ME ===================== */
 var CONTACT = [
+  { label: 'Phone',     text: '+20 10 8055 3261',    href: 'tel:+201080553261' },
+  { label: 'Instagram', text: '@trioandco.eg',       href: 'https://www.instagram.com/trioandco.eg/' },
   { label: 'Email',     text: 'hello@trioandco.com', href: 'mailto:hello@trioandco.com' },
-  { label: 'Website',   text: 'www.trioandco.com',   href: 'https://www.trioandco.com' },
-  { label: 'Instagram', text: '@trioandco',          href: 'https://instagram.com/trioandco' }
+  { label: 'Website',   text: 'www.trioandco.com',   href: 'https://www.trioandco.com' }
 ];
 /* c = row colour, on = text colour when the row is hovered. Text is copied from the company profile. */
 var SERVICES = [
@@ -245,11 +246,11 @@ var CASES = [
   { art: 'case2', bg: '--orange', cat: 'Creator campaign / Lifestyle', t: 'Creators first, always', d: 'A creator-led campaign that put real voices at the centre and turned fans into a community.',  res: 'Client name  /  Key result' },
   { art: 'case3', bg: '--pink',   cat: 'Social-first / Entertainment', t: 'Culture on the feed',    d: 'Short-form content and an always-on social engine built to ride trends and start them.',       res: 'Client name  /  Key result' }
 ];
-/* photo: path to a square photo, e.g. 'ahmed.jpg'. Phone numbers below are examples. */
+/* photo: path to a square photo, e.g. 'ahmed.jpg'. Add a real phone per founder (leave '' to hide). */
 var FOUNDERS = [
-  { n: '01', name: 'Ahmed ElSinary', role: 'Co Founder', c: '--blue',   ini: 'AE', photo: '', phone: '+20 10 0000 0001', d: 'Leads creative vision and the look, sound and feel of every brand we build.' },
-  { n: '02', name: 'Noor Ahmed',     role: 'Co Founder', c: '--pink',   ini: 'NA', photo: '', phone: '+20 10 0000 0002', d: 'Turns insight into sharp strategy and campaigns that connect with culture.' },
-  { n: '03', name: 'Amr Mahmoud',    role: 'Co Founder', c: '--purple', ini: 'AM', photo: '', phone: '+20 10 0000 0003', d: 'Connects brands with the creators, communities and channels that move them.' }
+  { n: '01', name: 'Ahmed ElSinary', role: 'Co Founder', c: '--blue',   ini: 'AE', photo: '', phone: '', d: 'Leads creative vision and the look, sound and feel of every brand we build.' },
+  { n: '02', name: 'Noor Ahmed',     role: 'Co Founder', c: '--pink',   ini: 'NA', photo: '', phone: '', d: 'Turns insight into sharp strategy and campaigns that connect with culture.' },
+  { n: '03', name: 'Amr Mahmoud',    role: 'Co Founder', c: '--purple', ini: 'AM', photo: '', phone: '', d: 'Connects brands with the creators, communities and channels that move them.' }
 ];
 /* Reel pieces.
    cat    : brand | social | video         kind / fmt : labels on the tile
@@ -406,7 +407,7 @@ var WORK = [
       if (f.photo) ava.append(h('img', { src: f.photo, alt: f.name })); else ava.textContent = f.ini;
       return h('article', { 'class': 'fc' }, ava, h('span', { 'class': 'no', text: f.n }), h('h3', { text: f.name }),
         h('span', { 'class': 'role', style: 'background:' + v(f.c), text: f.role }), h('p', { text: f.d }),
-        h('div', { 'class': 'tel' }, h('span', { text: 'Phone' }), h('span', { text: f.phone })));
+        f.phone ? h('div', { 'class': 'tel' }, h('span', { text: 'Phone' }), h('span', { text: f.phone })) : null);
     }));
   }
   function copy(text, node) {
